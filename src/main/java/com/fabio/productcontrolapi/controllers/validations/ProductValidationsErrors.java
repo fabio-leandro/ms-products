@@ -49,4 +49,23 @@ public class ProductValidationsErrors {
 
         return errors;
     }
+
+    public Map<String, Object> callConstraintViolationException(){
+
+        Map<String, Object> errors = new HashMap<>();
+
+        Instant timestamp = Instant.now();
+        Integer status = HttpStatus.INTERNAL_SERVER_ERROR.value();
+        String errorDescription = "Product already exists.";
+        String path = "api/v1/products/{description}";
+
+        errors.put("timestamp", timestamp);
+        errors.put("status", status);
+        errors.put("error", errorDescription);
+        errors.put("path", path);
+
+        return errors;
+    }
+
+
 }

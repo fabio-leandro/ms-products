@@ -3,6 +3,7 @@ package com.fabio.productcontrolapi.dtos;
 import lombok.Data;
 
 
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
