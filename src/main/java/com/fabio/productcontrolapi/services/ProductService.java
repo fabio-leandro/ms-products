@@ -33,5 +33,17 @@ public class ProductService {
     }
 
 
+    public void deleteByDescription(String description) throws ProductNotFoundException {
+        ProductEntity productEntity = modelMapper.map(findByDescription(description),ProductEntity.class);
+        productRepository.deleteById(productEntity.getId());
+    }
 
+
+    public ProductDTO updateProductByDescription(String description, ProductDTO productDTO)
+            throws ProductNotFoundException {
+        findByDescription(description);
+        ProductEntity productEntity = modelMapper.map(productDTO,ProductEntity.class);
+        productRepository.save(productEntity);
+        return modelMapper.map(productEntity,ProductDTO.class);
+    }
 }

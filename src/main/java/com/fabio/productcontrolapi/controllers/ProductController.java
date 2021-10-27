@@ -37,6 +37,21 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.OK).body(productDTO);
     }
 
+    @DeleteMapping("/{description}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteByDescription(@PathVariable String description) throws ProductNotFoundException {
+        productService.deleteByDescription(description);
+    }
+
+    @PutMapping("/{description}")
+    public ResponseEntity<ProductDTO> updateProductByDescription
+            (@PathVariable String description, @RequestBody ProductDTO productDTO) throws ProductNotFoundException {
+        ProductDTO productDTOresponse = productService.updateProductByDescription(description,productDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(productDTOresponse);
+    }
+
+
+
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(ConstraintViolationException.class)
